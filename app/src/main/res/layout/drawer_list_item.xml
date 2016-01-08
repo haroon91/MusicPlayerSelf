@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_drawer">
+
+    <View
+        android:id="@+id/view_selector"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/light_blue" />
+
+    <ImageView
+        android:id="@+id/iv_slide_item_image"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:id="@+id/tv_silde_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Search"
+        android:layout_marginLeft="16dp"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:background="?android:attr/activatedBackgroundIndicator"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+
+</LinearLayout>
