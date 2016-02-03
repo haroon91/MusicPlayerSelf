@@ -1,9 +1,7 @@
 package com.innotree.musicplayerself.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -29,6 +27,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private boolean inited = false;
 
+    //TODO
+    //broadcast reciever for now playing - time tick check that in other app
 
     public BaseActivity() { }
 

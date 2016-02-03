@@ -11,7 +11,6 @@ import android.os.PowerManager;
 
 import com.innotree.musicplayerself.model.Song;
 import com.innotree.musicplayerself.utility.Utility;
-import com.innotree.musicplayerself.viewholder.SongsViewHolder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +25,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public static List<Song> songsList; //current songs list
     private static int songPos; //current song playing position in list
 
+    public static MusicService instance = null;
+
+    MyApp m_myApp;
+
     public MusicService() {
     }
 
@@ -35,6 +38,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         songPos = 0;
 
         initMusicPlayer();
+        m_myApp = (MyApp) this.getApplication();
+
     }
 
     private void initMusicPlayer() {
@@ -51,21 +56,29 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        if (intent != null) {
+        if (intent.getExtras() != null) {
             retrieveSongList(intent);
             songPos = intent.getIntExtra("SONG_ID", 0);
         }
 
         if (intent.getAction().equals(Utility.ACTION_PLAY)) {
 
-            playSong();
+            if (m_myApp.playerPaused){
+                resumeSong();
+            }
+            else {
+                playSong();
+            }
         }
 
         else if (intent.getAction().equals(Utility.ACTION_PAUSE)) {
             if (mMediaPlayer.isPlaying()){
                 mMediaPlayer.pause();
+                m_myApp.playerPaused = true;
             }
         }
+
+        instance = MusicService.this;
 
         return START_NOT_STICKY;
     }
@@ -74,7 +87,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private void retrieveSongList(Intent intent) {
 
         Bundle b = intent.getExtras();
-        this.songsList = (ArrayList<Song>) b.getSerializable("SONGS_LIST");
+        songsList = (ArrayList<Song>) b.getSerializable("SONGS_LIST");
 
     }
 
@@ -120,6 +133,25 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
         mMediaPlayer.setOnPreparedListener(this);
         mMediaPlayer.prepareAsync(); //prepare async to not block main thread
+
+        m_myApp.nowPlaying = true;
+        m_myApp.playerPaused = false;
+    }
+
+    public void resumeSong(){
+
+        int length = mMediaPlayer.getCurrentPosition();
+
+        if (length > 0) {
+            mMediaPlayer.seekTo(length);
+            mMediaPlayer.start();
+        }
+        else {
+            playNext();
+        }
+
+        m_myApp.nowPlaying = true;
+        m_myApp.playerPaused = false;
     }
 
     private void playNext() {
@@ -133,4 +165,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public static Song getCurrentPlayingSong() {
         return songsList.get(songPos);
     }
+
+//    private void broadcastSongUpdate() {
+//        sendBroadcast(mediaIntent);
+//    }
+
+
 }

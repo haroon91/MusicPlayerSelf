@@ -1,19 +1,16 @@
 package com.innotree.musicplayerself.viewholder;
 
 import android.app.ActivityManager;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.innotree.musicplayerself.MusicService;
 import com.innotree.musicplayerself.R;
-import com.innotree.musicplayerself.activity.SongActivity;
 import com.innotree.musicplayerself.model.Song;
 import com.innotree.musicplayerself.utility.Utility;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -79,8 +76,8 @@ public class SongsViewHolder extends RecyclerView.ViewHolder implements View.OnC
                 mHolderView.getContext().startService(intent);
 
                 //start Song Activity
-                intent = new Intent(mHolderView.getContext(), SongActivity.class);
-                mHolderView.getContext().startActivity(intent);
+//                intent = new Intent(mHolderView.getContext(), SongActivity.class);
+//                mHolderView.getContext().startActivity(intent);
 
                 break;
 

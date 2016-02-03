@@ -1,11 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.innotree.musicplayerself.activity.SongsListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_songs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-</RelativeLayout>
+    <include
+        android:id="@+id/view_nowplaying"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        layout="@layout/now_playing"
+        android:layout_gravity="center_horizontal|bottom" />
+
+</LinearLayout>

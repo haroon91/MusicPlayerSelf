@@ -16,6 +16,10 @@ public class Song implements Serializable {
     public String image;
     public String filename;
 
+    public Song(){
+        songId = -1;
+    }
+
     public Song(long songId, String title, String artist, String duration,
                 String album, String genre, String image, String filename) {
         this.songId = songId;

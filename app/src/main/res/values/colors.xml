@@ -21,6 +21,8 @@
     <color name="light_blue">#37C3F2</color>
     <color name="background_drawer">#111111</color>
     <color name="semi_transparent">#88000000</color>
+    <color name="grey_transparent">#BB000000</color>
     <color name="sea_green">#09998C</color>
+
 
 </resources>

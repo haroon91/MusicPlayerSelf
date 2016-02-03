@@ -27,11 +27,23 @@ public class MyApp extends Application {
 
     private Context mContext;
 
+    public boolean nowPlaying;
+    public boolean playerPaused;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         mContext = getApplicationContext();
+
+//        BroadcastReceiver m_nowPlayingReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                Log.v("OnReceive", "Show NowPlaying Layout");
+//            }
+//        };
+
+//        registerReceiver(m_nowPlayingReceiver, new IntentFilter(MusicService.BROADCAST_MEDIAPLAYER_PLAYING));
 
     }
 
